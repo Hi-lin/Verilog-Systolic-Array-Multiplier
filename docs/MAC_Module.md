@@ -2,7 +2,7 @@
 This module is able to multiply two numbers and add it to a running total. The following is a step by step of what it module does.
 
 Only when readinA and readinB are high will this module start execution, this mechanism is used to control the timing of each module in the systolic array.  
-The input numbers for this module are A and B
+The input numbers for this module are A and B, and their product is added to running total out_num.
 
 ### 1. Radix 4 Booth encoding
 The first step is booth encoding. The goal of this step is to find 4 numbers which sum to the product of A*B. Each MAC module contains 4 booth encoder modules refered to as "b1, b2, b3, and b4" each boothcoder contains  
@@ -25,10 +25,25 @@ This module is essentially a mux, outputing a direct copy of inputs 2,3,4, or 5 
             3'b110: out = input 4;  
             3'b111: out = 0;
    
+Booth encoder b1 returns partial[0], b2 returns partial[1], and so on until b4.  
 Adding all of these outputs would yield the product of A*B.  
 
 ### 2. Carry-Save Reduction (module adder2 in verilog file)
 The next step is carry save reduction. We have already created a list of things to add in out last step. By using carry save reduction, we can reduce the number of things to add down to two.  
 
-**Input:**  Each carry save adder module in the project takes in 3 inputs (3 things needed to add).  
-**output:** The output returns two numbers o1 and c1
+**Input:**  Each carry save adder module in the project takes in 3 inputs (X1, X2, X2).  
+**output:** The output returns two numbers o1(base output) and c1 (carry output).
+1. o1 = X1^X2^X3
+2. o2 = (X1&X2)|(X1&X3)|(X2&C3)
+
+The output is such that o1+(o2<<1) is equal to the sum of X1+X2+X3  
+
+**The module contains 3 carry save adders:** 
+1. add1 takes partial[0], partial[1], partial[2] and returns res1[0] as o1 and res1[1] as c1  
+2. add2 takes partial[3], res1[0], res1[1]<<1 and returns res2[0] as o1 and res2[1] as c1
+3. add3 takes out_num, res2[0], res2[1]<<1 and returns res3[0] as o1 and res3[1] as c1  
+
+By including out_num in step 3 we don't have to add the running total later.
+
+### 3. Kogge-Stone Adder
+The final step is to add the two remaining values. In this project this is done using the Kogge-Stone adder. In this section 
