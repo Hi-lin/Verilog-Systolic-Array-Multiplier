@@ -50,11 +50,22 @@ The final step is to add the two remaining values. In this project this is done 
 1. The two numbers I will add in this last step will be called X1 and X2.
 2. G[i:j] - if true it means that X1[i:j]+X2[i:j] will create a carry in bit i+1.
 3. P[i:j] - if true it means that X1[i:j]+X2[i:j] will result in 1 bits from i to j. Or in otherwords, adding any additional number will create a carry.
-4. 
-5. Initially, I will populate G0 with:  res3[0] & (res3[1]<<1)
-6. Initially, I will populate P0 with:  res3[0] * (res3[1]<<1)
+4. To merge two intervals we realize that G[i1:j2] = G[i1:j1] | (P[i1:j1]&G[i2:j2])
+5. We also realize that merging two P terms is just P(i1:j2) = P(i1:j1) & P(i2:j2)
+6. Initially, I will populate **G0** with:  res3[0] & (res3[1]<<1)
+7. Initially, I will populate **P0** with:  res3[0] * (res3[1]<<1)
 
 Since the sum is 17 bits I will use ceil(log(17))= 5 stages for the Kogge-Stone Adder, I will call then stages 1-5.
 
 **For stage 1 of the Kogge-Stone Adder:**  
-
+In this stage we will take inputs G0 and P0 and merge each bit with bit i-1 to create G1 and P1 such that G1[i] = G[i:i-1] for all bits in G1 and P1[i] = P[i:i-1] for all bits in P1.  
+  
+**For stage 2 of the Kogge-Stone Adder:** 
+In this stage we will take inputs G1 and P1 and merge each bit with bit i-2 to create G2 and P2. Remember each bit in G1 is already equal to G[i:i-1] so after merging: G2[i] = G[i:i-3] for all bits in G2 and P2[i] = P[i:i-3] for all bits in P2.  
+  
+**For stage k of the Kogge-Stone Adder:** 
+Repeat the previous steps 5 times, taking G<sub>k-1(/sub) and P<sub>k-1(/sub) and merge each bit with bit i-2<sup>k-1(/sup) and save the result in G<sub>K</sub> and Pk<sub>K</sub>.  
+  
+By the the value of G[i:0] for all i is stored in G5[i]. Then, the module gets the final answer which is just  
+**G5[15:0]^P0[16:1] for bits 1-17**  
+**P0[0] for bit 0**  
