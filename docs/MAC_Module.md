@@ -46,4 +46,15 @@ The output is such that o1+(o2<<1) is equal to the sum of X1+X2+X3
 By including out_num in step 3 we don't have to add the running total later.
 
 ### 3. Kogge-Stone Adder
-The final step is to add the two remaining values. In this project this is done using the Kogge-Stone adder. In this section 
+The final step is to add the two remaining values. In this project this is done using the Kogge-Stone adder. First I'll go over some information.  
+1. The two numbers I will add in this last step will be called X1 and X2.
+2. G[i:j] - if true it means that X1[i:j]+X2[i:j] will create a carry in bit i+1.
+3. P[i:j] - if true it means that X1[i:j]+X2[i:j] will result in 1 bits from i to j. Or in otherwords, adding any additional number will create a carry.
+4. 
+5. Initially, I will populate G0 with:  res3[0] & (res3[1]<<1)
+6. Initially, I will populate P0 with:  res3[0] * (res3[1]<<1)
+
+Since the sum is 17 bits I will use ceil(log(17))= 5 stages for the Kogge-Stone Adder, I will call then stages 1-5.
+
+**For stage 1 of the Kogge-Stone Adder:**  
+
