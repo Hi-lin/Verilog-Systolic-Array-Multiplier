@@ -15,7 +15,7 @@ Looking at the animation above pay attention to the highlighted rows and columns
 5. Then column 1 & row 1 stops to shift and so on
 
 In the timing animation, whenever a MAC revieves a new value, it will always propogate the value to the value forward to the next two MACs in the row/column. So, in this project, the MACs are designed to automatically send the values forward at every clock.  
-In addition, to control the timing, an array called indexing is created. When indexing[i] is high, 
+In addition, to control the timing, an array called indexing is created. When indexing[i] is high, on the next clock cycle.
 1. triggers the leading MAC in row i & column i to read the next value in their respective row/column.
 2. shifts all values in row<sub>i</sub> of arrA and row<sub>i</sub> of arrB forward by one.
 3. indexing[i] is replaced by the value in indexing[i-1] on each clock cycle. So, by setting i[0] as high, all values in indexing would eventually be set to high.
