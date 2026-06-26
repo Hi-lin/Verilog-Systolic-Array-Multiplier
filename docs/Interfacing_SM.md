@@ -24,3 +24,10 @@
 7. **FCFM**
    a. set readin back to 0 and return to state **Idle**.
   
+to interface with this state machine, first send the intruction you want to perform. Then if you want to
+1. perform a calculation  
+  a. send array 1.
+  b. wait for confirmation bit.
+  c. send array 2.
+2. get a value
+   a. Assuming you sent the first instruction correcly just wait for the value. It will come in 4 seperate bytes with the largest byte sending first.
