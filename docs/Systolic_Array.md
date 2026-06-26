@@ -1,4 +1,4 @@
-<img width="1920" height="1440" alt="ezgif com-animated-gif-maker" src="https://github.com/user-attachments/assets/ae88113f-8d7e-47d7-aadc-4255ac7eb279" />
+
 # Systolic Array
 
 The Systolic Array in this module consists of a 4x4 array of MAC modules, each of these modules are able to multiply inputed numbers and propogate the numbers to modules in the next rows and columns. 
@@ -6,7 +6,7 @@ The Systolic Array in this module consists of a 4x4 array of MAC modules, each o
 **Timing:**
 Assuming we want to multiply two 4x4 arrays: Array X and Array Y. For notation lets say X<sub>ij</sub> means the value in array X at row i column j. The timing we want to acheive to do this is
   
-
+<img width="1920" height="1440" alt="ezgif com-animated-gif-maker" src="https://github.com/user-attachments/assets/ae88113f-8d7e-47d7-aadc-4255ac7eb279" />
 
 Looking at the animation above pay attention to the highlighted rows and columns above. Notice that starting from clock 1.  
 1. column 1 & row 1 starts to shift
