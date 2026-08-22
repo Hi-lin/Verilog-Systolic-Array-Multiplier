@@ -20,4 +20,4 @@ The TX FIFO will automatically send the next bit to transmit when it contains rl
   
   
 The actual RX and TX modules were heavily influenced by the UART code in this repository  
-[Link to Repo](https://github.com/nandland/nandland/blob/master/uart/LICENSE)
+[Link to Repo](https://github.com/nandland/nandland/tree/master/uart/Verilog)
