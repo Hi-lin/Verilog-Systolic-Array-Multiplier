@@ -15,4 +15,9 @@ The TX FIFO is also a wrap around FIFO.
 The TX FIFO will automatically send the next bit to transmit when it contains rlavent data and when the transmitter module is ready. To add values to the TX FIFO.
 1. Update RX Bytle with the value you want to add.
 2. set the readin wire to high for one clock cycle.
-3. set the readin wire to low for the next clock cycle
+3. set the readin wire to low for the next clock cycle  
+  
+  
+  
+The actual RX and TX modules were heavily influenced by the UART code in this repository  
+[Link to Repo](https://github.com/nandland/nandland/blob/master/uart/LICENSE)
