@@ -60,6 +60,6 @@ Since the sum is 17 bits I will use ceil(log₂(17))= 5 stages for the Kogge-Sto
 **For stage k of the Kogge-Stone Adder:**  
 For each stage k, each bit is merged with the bit 2^(k-1) positions earlier. This doubles the range covered by the prefix calculation at each stage. 
   
-By the end of the fifth stage, the final answer which is just:  
+By the end of the fifth stage, the carry information for every bit has been calculated. The final sum is then calculated as: 
 **G5[15:0]^P0[16:1] for bits 1-17**  
 **P0[0] for bit 0**  
