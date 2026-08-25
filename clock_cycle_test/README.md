@@ -13,3 +13,7 @@ to count the clock cycles required for the operation.
 Clock cycles are counted from start of matrix computation to completion.
 ### C host program
 Same program as the test code provided in deliverables/tests/Test_Code.
+
+### Videos
+A recording of the clock cycle comparison between baseline and systolic array multiplier. The measured cycles is displayed on
+the LEDs at the bottom of the FPGA in base 2.
