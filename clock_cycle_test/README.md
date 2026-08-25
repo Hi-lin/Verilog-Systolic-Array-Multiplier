@@ -4,4 +4,11 @@ The source files used to test the clock cycles.
 ### Baseline Multiplier  
 The baseline multiplier works similarly to software implementations of matrix multiplication. The multiplier systematically 
 computes each output element by taking the dot product of a row from the first matrix with a column from the second matrix. 
-Each multiplication and addition is performed sequentially, with intermediate results stored until the complete output matrix is generated.
+Each multiply-accumulate operation is performed sequentially, with the resulting product added to the corresponding element 
+of the output matrix.  
+Clock cycles are counted from start of final array computation to completion.
+### Systolic Array Multiplier  
+The systolic array multiplier uses the same module as the one provided in the deliverables, with an additional register 
+to count the clock cycles required for the operation.  
+Clock cycles are counted from start of final array computation to completion.
+
