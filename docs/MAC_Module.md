@@ -5,9 +5,9 @@ The module begins execution only when both readinA and readinB are high. These s
 The input numbers for this module are A and B, and their product is added to running total out_num.
 
 ### 1. Radix 4 Booth encoding
-The first step is booth encoding. The goal of this step is to find 4 numbers which sum to the product of A*B. Each MAC module contains 4 booth encoder modules referred to as "b1, b2, b3, and b4" each booth encoder contains  
+The first step is Booth encoding. The goal of this step is to find 4 numbers which sum to the product of A*B. Each MAC module contains four Booth encoder modules, referred to as b1, b2, b3, and b4. Each Booth encoder contains the following inputs:
 **Inputs:**  
-1. 3 bits of input A<<1: booth encoder i will receive bits 2i-2 to 2i inclusive of shifted input A<<1. For example, if A = 11001010, then A << 1 = ..., which is partitioned into the groups [110], [001], [101], and [100] using the specified indexing convention.
+1. 3 bits of input A<<1: Booth encoder i will receive bits 2i-2 to 2i inclusive of shifted input A<<1. For example, if A = 11001010, then A << 1 = ..., which is partitioned into the groups [110], [001], [101], and [100] using the specified indexing convention.
 2. The value of input B left shifted by 2i-2.
 3. The value of 2B left shifted by 2i-2.
 4. The value of -B left shifted by 2i-2.
@@ -29,9 +29,9 @@ Booth encoder b1 returns partial[0], b2 returns partial[1], and so on until b4.
 Adding all of these outputs would yield the product of A*B.  
 
 ### 2. Carry-Save Reduction (module adder2 in verilog file)
-The next step is carry save reduction. We have already created a list of operands to add in out last step. By using carry save reduction, we can reduce the number of things to add down to two.  
+The next step is carry save reduction. We have already created a list of operands to add in out previous step. By using carry save reduction, we can reduce the number of things to add down to two.  
 
-**Input:**  Each carry save adder module in the project takes three inputs (X1, X2, 32).  
+**Input:**  Each carry save adder module in the project takes three inputs (X1, X2, X3).  
 **output:** The output returns two numbers o1(base output) and c1 (carry output).
 1. o1 = X1^X2^X3
 2. c1 = (X1&X2)|(X1&X3)|(X2&X3)
